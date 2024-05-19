@@ -1,0 +1,71 @@
+/* Import the font at the beginning */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap');
+
+/* Apply the font to the entire document */
+body {
+    font-family: 'Noto Sans', sans-serif;
+}
+
+/* Additional styling can go here */
+header, main, table, select, label, h1, h2 {
+    font-family: 'Noto Sans', sans-serif;
+}
+
+header h1 {
+    background-color: #63fff7; /* Background color */
+    border-radius: 15px; /* Rounded corners */
+    padding: 10px 20px; /* Padding inside the element */
+    display: block; /* Ensure block display */
+    margin-top: 0; /* No margin on top */
+    margin-right: auto; /* Center horizontally */
+    margin-bottom: 5px; /* Minimal gap below */
+    margin-left: auto; /* Center horizontally */
+    max-width: fit-content; /* Ensure width fits content */
+}
+header h2 {
+    background-color: #ff63e5; /* Background color */
+    border-radius: 15px; /* Rounded corners */
+    padding: 10px 20px; /* Padding inside the element */
+    color: black; /* Text color */
+    display: block; /* Ensure block display */
+    margin-top: 5px; /* Minimal gap above */
+    margin-right: auto; /* Center horizontally */
+    margin-bottom: 0; /* No margin on bottom */
+    margin-left: auto; /* Center horizontally */
+    max-width: fit-content; /* Ensure width fits content */
+}
+
+
+/* Flexbox container for the form elements */
+.filter-container {
+    display: flex;
+    gap: 5%; /* Spacing between each form element */
+    align-items: center; /* Align items vertically in the center */
+    justify-content: center; /* Center the form items horizontally */
+    margin-top: 10px; /* Optional: add some margin to the top */
+}
+
+/* Style for each form group (label + select) */
+.filter-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Align items horizontally in the center */
+}
+
+
+
+/* Style for the select element */
+select {
+    padding: 5px; /* Padding inside the select element */
+    border-radius: 8px; /* Rounded corners */
+    border: 1px solid #ccc; /* Border color */
+    background-color: #f9f9f9; /* Background color */
+    appearance: none; /* Remove default appearance */
+    -webkit-appearance: none; /* Remove default appearance for Safari */
+    -moz-appearance: none; /* Remove default appearance for Firefox */
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12"><path fill="%23888" d="M6 7l-3-3h6z"/></svg>'); /* Custom dropdown arrow */
+    background-repeat: no-repeat; /* Prevent the arrow from repeating */
+    background-position: calc(100% - 10px) center; /* Position the arrow to the right */
+    padding-right: 20px; /* Ensure space for the arrow */
+}
+
