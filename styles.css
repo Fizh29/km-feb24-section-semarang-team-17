@@ -4,6 +4,9 @@
 /* Apply the font to the entire document */
 body {
     font-family: 'Noto Sans', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 /* Additional styling can go here */
@@ -11,30 +14,85 @@ header, main, table, select, label, h1, h2 {
     font-family: 'Noto Sans', sans-serif;
 }
 
+/* Top navbar styling */
+.top-navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: linear-gradient(90deg, #00fff7, #e22bc3); /* Blue to purple gradient */
+    padding: 10px 20px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.top-navbar .logo img {
+    height: 40px;
+}
+
+.top-navbar .nav-links {
+    display: flex;
+    align-items: center;
+}
+.top-navbar .nav-links button {
+    background-color: white; /* White background */
+    color: #444; /* Dark text color */
+    border: 1px solid #ccc; /* Light grey border */
+    padding: 10px 20px;
+    margin: 0 5px 0 0; /* Margin-right set to 5px */
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 16px;
+    transition: background 0.3s ease, color 0.3s ease; /* Smooth transition for background and color */
+}
+
+.top-navbar .nav-links button:hover {
+    background-color: #f0f0f0; /* Slightly darker grey background on hover */
+    color: #000; /* Black text color on hover */
+}
+
+/* Specific style to ensure the admin icon doesn't have a background */
+.top-navbar .nav-links img {
+    background: none;
+    border: none;
+    margin: 0 50px 0 0; /* Margin-right set to 10px */
+    padding: 0;
+    height: 30px; /* Adjust the size as needed */
+    cursor: pointer;
+}
+
+.top-navbar .nav-links img {
+    height: 30px;
+    vertical-align: middle;
+}
+
+/* Header styles */
+header {
+    padding-top: 70px; /* Ensure there's space for the fixed navbar */
+    text-align: center;
+}
+
 header h1 {
     background-color: #63fff7; /* Background color */
     border-radius: 15px; /* Rounded corners */
     padding: 10px 20px; /* Padding inside the element */
     display: block; /* Ensure block display */
-    margin-top: 0; /* No margin on top */
-    margin-right: auto; /* Center horizontally */
-    margin-bottom: 5px; /* Minimal gap below */
-    margin-left: auto; /* Center horizontally */
+    margin: 0 auto 5px auto; /* Center horizontally and margin */
     max-width: fit-content; /* Ensure width fits content */
 }
+
 header h2 {
     background-color: #ff63e5; /* Background color */
     border-radius: 15px; /* Rounded corners */
     padding: 10px 20px; /* Padding inside the element */
     color: black; /* Text color */
     display: block; /* Ensure block display */
-    margin-top: 5px; /* Minimal gap above */
-    margin-right: auto; /* Center horizontally */
-    margin-bottom: 0; /* No margin on bottom */
-    margin-left: auto; /* Center horizontally */
+    margin: 5px auto 0 auto; /* Center horizontally and margin */
     max-width: fit-content; /* Ensure width fits content */
 }
-
 
 /* Flexbox container for the form elements */
 .filter-container {
@@ -52,8 +110,6 @@ header h2 {
     align-items: center; /* Align items horizontally in the center */
 }
 
-
-
 /* Style for the select element */
 select {
     padding: 5px; /* Padding inside the select element */
@@ -69,3 +125,47 @@ select {
     padding-right: 20px; /* Ensure space for the arrow */
 }
 
+/* Grid container for charts and table */
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    gap: 20px;
+    padding: 20px;
+    margin-top: 20px; /* Space between header and main content */
+}
+
+#transaction-by-month {
+    grid-column: 1;
+    grid-row: 1;
+}
+
+#pareto {
+    grid-column: 2;
+    grid-row: 1;
+}
+
+#correlation {
+    grid-column: 1;
+    grid-row: 2;
+}
+
+#transaction-table {
+    grid-column: 2;
+    grid-row: 2;
+}
+
+/* Adjust table styles */
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td {
+    padding: 10px;
+    text-align: left;
+}
+
+th {
+    background-color: #f2f2f2;
+}

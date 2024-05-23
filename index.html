@@ -13,6 +13,17 @@
   </head> 
   <body>
     <header>
+      <nav class="top-navbar">
+        <div class="logo">
+          <img src="asset/logo-team-17.png" alt="Team 17 Logo">
+        </div>
+        <div class="nav-links">
+          <button>Home</button>
+          <button>Dashboard</button>
+          <button>Coffee Shop Cart</button>
+          <img src="asset/admin-logo.png" alt="Admin">
+      </div>
+      </nav>
       <h1>DASHBOARD TEAM 17 SEMARANG</h1>
       <h2>Maven Roasters Coffee Shop</h2>
       <div class="filter-container">
@@ -51,20 +62,21 @@
         </div>
       </div>
     </header>
-    <main>
-      <div>
+    
+    <main class="dashboard-grid">
+      <div id="transaction-by-month">
         <h1>Transaction by Month</h1>
         <canvas id="transaction-by-month-chart"></canvas>
       </div>
-      <div>
+      <div id="pareto">
         <h1>Pareto</h1>
         <canvas id="pareto-chart"></canvas>
       </div>
-      <div>
+      <div id="correlation">
         <h1>Correlation Price vs Total Sales</h1>
         <canvas id="correlation-chart"></canvas>
       </div>
-      <div>
+      <div id="transaction-table">
         <h1>Transaction Table</h1>
         <table border="1">
           <thead>
