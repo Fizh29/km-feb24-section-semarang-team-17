@@ -1,115 +1,118 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Dashboard Team 17 Semarang</title>
-    <link rel="stylesheet" href="styles.css" />
-    <link rel="icon" type="image/x-icon" href="\asset\logo-team-17.png">
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-  </head> 
-  <body>
-    <header>
-      <nav class="top-navbar">
-        <div class="logo">
-          <img src="asset/logo-team-17.png" alt="Team 17 Logo">
-        </div>
-        <div class="nav-links">
-          <button>Home</button>
-          <button>Dashboard</button>
-          <button>Coffee Shop Cart</button>
-          <img src="asset/admin-logo.png" alt="Admin">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dashboard Team 17 Semarang</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="icon" type="image/x-icon" href="asset/logo-team-17.png" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+  <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@0.7.0"></script>
+
+</head>
+<body>
+  <header>
+    <nav class="navbar">
+      <div class="navbar-logo">
+        <img src="asset/logo-team-17.png" alt="Team 17 Logo" />
       </div>
-      </nav>
-      <h1>DASHBOARD TEAM 17 SEMARANG</h1>
+      <div class="navbar-links">
+
+        <button onclick="window.location.href='index.html'">Dashboard</button>
+        <button onclick="window.location.href='team.html'">About Team</button>
+        
+      </div>
+    </nav>
+  </header>
+  <div class="container">
+    <div class="header-text">
+      <h1>Dashboard Team 17 Semarang</h1>
       <h2>Maven Roasters Coffee Shop</h2>
-      <div class="filter-container">
-        <div class="filter-item">
-          <label for="product-category-select">Product Category</label>
-          <select id="product-category-select">
-            <option value="all">All</option>
-            <option value="category-1">Category 1</option>
-            <option value="category-2">Category 2</option>
-            <option value="category-3">Category 3</option>
-            <option value="category-4">Category 4</option>
-            <option value="category-5">Category 5</option>
-          </select>
-        </div>
-        <div class="filter-item">
-          <label for="store-location-select">Store Location</label>
-          <select id="store-location-select">
-            <option value="all">All</option>
-            <option value="location-1">Location 1</option>
-            <option value="location-2">Location 2</option>
-            <option value="location-3">Location 3</option>
-            <option value="location-4">Location 4</option>
-            <option value="location-5">Location 5</option>
-          </select>
-        </div>
-        <div class="filter-item">
-          <label for="transaction-month-select">Transaction by Month</label>
-          <select id="transaction-month-select">
-            <option value="all">All</option>
-            <option value="month-1">Month 1</option>
-            <option value="month-2">Month 2</option>
-            <option value="month-3">Month 3</option>
-            <option value="month-4">Month 4</option>
-            <option value="month-5">Month 5</option>
-          </select>
-        </div>
+    </div>
+    <div class="filter-container">
+      <div class="filter-item">
+        <label for="product-category-select">Product Category</label>
+        <select id="product-category-select">
+          <option value="all">All</option>
+          <option value="Coffee beans">Coffee beans</option>
+          <option value="Packaged Chocolate">Packaged Chocolate</option>
+          <option value="Loose Tea">Loose Tea</option>
+          <option value="Coffee">Coffee</option>
+          <option value="Tea">Tea</option>
+          <option value="Drinking Chocolate">Drinking Chocolate</option>
+          <option value="Flavours">Flavours</option>
+          <option value="Bakery">Bakery</option>
+          <option value="Branded">Branded</option>
+        </select>
       </div>
-    </header>
-    
+      <div class="filter-item">
+        <label for="store-location-select">Store Location</label>
+        <select id="store-location-select">
+          <option value="all">All</option>
+          <option value="Astoria">Astoria</option>
+          <option value="Lower Manhattan">Lower Manhattan</option>
+          <option value="Hell's Kitchen">Hell's Kitchen</option>
+        </select>
+      </div>
+      <div class="filter-item">
+        <label for="transaction-month-select">Select month range</label>
+        <select id="transaction-month-select">
+          <option value="all">All</option>
+          <option value="month-1">January</option>
+          <option value="month-2">Febuary</option>
+          <option value="month-3">March</option>
+          <option value="month-4">May</option>
+          <option value="month-5">June</option>
+        </select>
+      </div>
+    </div>
+
     <main class="dashboard-grid">
-      <div id="transaction-by-month">
-        <h1>Transaction by Month</h1>
-        <canvas id="transaction-by-month-chart"></canvas>
+      <div class="chart-container">
+        <h1 class="chart-title">Revenue by Product Category</h1>
+        <div class="loading" id="loading-category-chart">Loading...</div>
+        <canvas id="revenue-by-category-chart" style="display: none"></canvas>
       </div>
-      <div id="pareto">
-        <h1>Pareto</h1>
-        <canvas id="pareto-chart"></canvas>
+      <div class="chart-container">
+        <h1 class="chart-title">Revenue by Month</h1>
+        <div class="loading" id="loading-month-chart">Loading...</div>
+        <canvas id="revenue-by-month-chart" style="display: none"></canvas>
       </div>
-      <div id="correlation">
-        <h1>Correlation Price vs Total Sales</h1>
-        <canvas id="correlation-chart"></canvas>
+      <div class="chart-container">
+        <h1 class="chart-title">Revenue by Store Location</h1>
+        <div class="loading" id="loading-location-chart">Loading...</div>
+        <canvas id="revenue-by-location-chart" width="100" height="100" style="display: none;"></canvas>
+
       </div>
-      <div id="transaction-table">
-        <h1>Transaction Table</h1>
-        <table border="1">
-          <thead>
-            <tr>
-              <th>Product</th>
-              <th>Price</th>
-              <th>Total Sales</th>
-              <th>Transaction Date</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Product 1</td>
-              <td>$100</td>
-              <td>1000</td>
-              <td>2021-01-01</td>
-            </tr>
-            <tr>
-              <td>Product 2</td>
-              <td>$200</td>
-              <td>2000</td>
-              <td>2021-01-02</td>
-            </tr>
-            <tr>
-              <td>Product 3</td>
-              <td>$300</td>
-              <td>3000</td>
-              <td>2021-01-03</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
+
+      <div class="table-container">
+          <h1 class="table-title">Transaction Table</h1>
+          <div class="loading" id="loading-transaction-table">Loading...</div>
+          <table id="transaction-table-dt" class="display">
+            <thead>
+              <tr>
+                <th>Product Category</th>
+                <th>Product Detail</th>
+                <th>Price</th>
+                <th>Total Sales</th>
+                <th>Transaction Date</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
     </main>
-    <script src="scripts.js"></script>
-  </body>
+  </div>
+  <footer>
+    <p>&copy; 2024 Team 17 Semarang. All rights reserved.</p>
+  </footer>
+  <script src="scripts.js"></script>
+</body>
 </html>
