@@ -3,6 +3,7 @@ document.addEventListener("DOMContentLoaded", function () {
   let revenueByCategoryChart;
   let revenueByMonthChart;
   let revenueByLocationChart;
+  let revenueByProductDetailChart; // New chart for Revenue by Product Detail
   let originalData; // Data as fetched
 
   // Fetch the transactions data
@@ -29,6 +30,7 @@ document.addEventListener("DOMContentLoaded", function () {
       const revenueByCategoryData = processRevenueByCategoryData(data);
       const revenueByMonthData = processRevenueByMonthData(data);
       const revenueByLocationData = processRevenueByLocationData(data);
+      const revenueByProductDetailData = processRevenueByProductDetailData(data); // New data for Revenue by Product Detail
 
       // Bar chart configuration for Revenue by Product Category
       const ctxRevenueByCategory = document
@@ -79,7 +81,29 @@ document.addEventListener("DOMContentLoaded", function () {
       });
       $("#revenue-by-location-chart").show();
       $("#loading-location-chart").hide();
+
+      // Bar chart configuration for Revenue by Product Detail
+      const ctxRevenueByProductDetail = document
+        .getElementById("revenue-by-product-detail-chart")
+        .getContext("2d");
+      revenueByProductDetailChart = new Chart(ctxRevenueByProductDetail, {
+        type: "bar",
+        data: revenueByProductDetailData,
+        options: {
+          indexAxis: 'y',
+          scales: {
+            y: {
+              beginAtZero: true,
+            },
+            
+          },
+          
+        },
+      });
+      $("#revenue-by-product-detail-chart").show(); // Show the new chart
+      $("#loading-product-detail-chart").hide(); // Hide loading indicator
     })
+
     .catch((error) =>
       console.error("Error fetching transactions data:", error)
     );
@@ -90,16 +114,19 @@ document.addEventListener("DOMContentLoaded", function () {
     const revenueByCategoryData = processRevenueByCategoryData(filteredData);
     const revenueByMonthData = processRevenueByMonthData(filteredData);
     const revenueByLocationData = processRevenueByLocationData(filteredData);
+    const revenueByProductDetailData = processRevenueByProductDetailData(filteredData); // Update data for Revenue by Product Detail
 
     // Update chart data
     revenueByCategoryChart.data = revenueByCategoryData;
     revenueByMonthChart.data = revenueByMonthData;
     revenueByLocationChart.data = revenueByLocationData;
+    revenueByProductDetailChart.data = revenueByProductDetailData; // Update chart data for Revenue by Product Detail
 
     // Redraw charts
     revenueByCategoryChart.update();
     revenueByMonthChart.update();
     revenueByLocationChart.update();
+    revenueByProductDetailChart.update(); // Redraw chart for Revenue by Product Detail
   }
 
   // Function to filter data based on selected options
@@ -126,7 +153,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Filter data based on selected month
     if (selectedMonth !== "all") {
-      const selectedMonthIndex = parseInt(selectedMonth.split("-")[1]);
+      const selectedMonthIndex = parseInt(selectedMonth.split("-")[1]); // Correctly parse month index
       filteredData = filteredData.filter((item) => {
         const transactionMonth = new Date(item.transaction_date).getMonth() + 1;
         return transactionMonth === selectedMonthIndex;
@@ -145,8 +172,8 @@ document.addEventListener("DOMContentLoaded", function () {
   $("#store-location-select").change(filterData);
   $("#transaction-month-select").change(filterData);
 
-   // Function to process revenue data by category
-   function processRevenueByCategoryData(data) {
+  // Function to process revenue data by category
+  function processRevenueByCategoryData(data) {
     const categoryRevenue = {};
     data.forEach((transaction) => {
       const category = transaction.product_category;
@@ -205,47 +232,80 @@ document.addEventListener("DOMContentLoaded", function () {
     };
   }
 
-// Function to process revenue data by location
-function processRevenueByLocationData(data) {
-  const locationRevenue = {};
-  data.forEach((transaction) => {
-    const location = transaction.store_location;
-    const revenue = transaction.unit_price * transaction.transaction_qty;
-    if (!locationRevenue[location]) {
-      locationRevenue[location] = 0;
-    }
-    locationRevenue[location] += revenue;
-  });
+  // Function to process revenue data by location
+  function processRevenueByLocationData(data) {
+    const locationRevenue = {};
+    data.forEach((transaction) => {
+      const location = transaction.store_location;
+      const revenue = transaction.unit_price * transaction.transaction_qty;
+      if (!locationRevenue[location]) {
+        locationRevenue[location] = 0;
+      }
+      locationRevenue[location] += revenue;
+    });
 
-  return {
-    labels: Object.keys(locationRevenue),
-    datasets: [
-      {
-        label: "Revenue",
-        data: Object.values(locationRevenue),
-        backgroundColor: [
-          "rgba(255, 99, 132, 0.2)",
-          "rgba(54, 162, 235, 0.2)",
-          "rgba(255, 206, 86, 0.2)",
-          "rgba(75, 192, 192, 0.2)",
-          "rgba(153, 102, 255, 0.2)",
-          "rgba(255, 159, 64, 0.2)",
-        ],
-        borderColor: [
-          "rgba(255, 99, 132, 1)",
-          "rgba(54, 162, 235, 1)",
-          "rgba(255, 206, 86, 1)",
-          "rgba(75, 192, 192, 1)",
-          "rgba(153, 102, 255, 1)",
-          "rgba(255, 159, 64, 1)",
-        ],
-        borderWidth: 1,
-      },
-    ],
-  };
-}
+    return {
+      labels: Object.keys(locationRevenue),
+      datasets: [
+        {
+          label: "Revenue",
+          data: Object.values(locationRevenue),
+          backgroundColor: [
+            "rgba(255, 99, 132, 0.2)",
+            "rgba(54, 162, 235, 0.2)",
+            "rgba(255, 206, 86, 0.2)",
+            "rgba(75, 192, 192, 0.2)",
+            "rgba(153, 102, 255, 0.2)",
+            "rgba(255, 159, 64, 0.2)",
+          ],
+          borderColor: [
+            "rgba(255, 99, 132, 1)",
+            "rgba(54, 162, 235, 1)",
+            "rgba(255, 206, 86, 1)",
+            "rgba(75, 192, 192, 1)",
+            "rgba(153, 102, 255, 1)",
+            "rgba(255, 159, 64, 1)",
+          ],
+          borderWidth: 1,
+        },
+      ],
+    };
+  }
 
+  // Function to process revenue data by product detail
+  function processRevenueByProductDetailData(data) {
+    const productDetailRevenue = {};
+    data.forEach((transaction) => {
+      const productDetail = transaction.product_detail;
+      const revenue = transaction.unit_price * transaction.transaction_qty;
+      if (!productDetailRevenue[productDetail]) {
+        productDetailRevenue[productDetail] = 0;
+      }
+      productDetailRevenue[productDetail] += revenue;
+    });
 
+    // Sort by revenue in descending order
+    const sortedProductDetails = Object.keys(productDetailRevenue).sort(
+      (a, b) => productDetailRevenue[b] - productDetailRevenue[a]
+    );
+
+    return {
+      labels: sortedProductDetails,
+      datasets: [
+        {
+          label: "Revenue",
+          data: sortedProductDetails.map(
+            (productDetail) => productDetailRevenue[productDetail]
+          ),
+          backgroundColor: sortedProductDetails.map(getRandomColor),
+          borderColor: sortedProductDetails.map(getRandomColor),
+          borderWidth: 1,
+        },
+      ],
+    };
+  }
+
+  // Function to generate random colors
   function getRandomColor() {
     const letters = "0123456789ABCDEF";
     let color = "#";
@@ -255,4 +315,3 @@ function processRevenueByLocationData(data) {
     return color;
   }
 });
-

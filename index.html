@@ -68,46 +68,61 @@
           <option value="month-1">January</option>
           <option value="month-2">Febuary</option>
           <option value="month-3">March</option>
-          <option value="month-4">May</option>
-          <option value="month-5">June</option>
+          <option value="month-4">April</option>
+          <option value="month-5">May</option>
+          <option value="month-6">June</option>
         </select>
       </div>
     </div>
 
     <main class="dashboard-grid">
-      <div class="chart-container">
-        <h1 class="chart-title">Revenue by Product Category</h1>
+	 <div class ="CTable">
+    
+    <div class="chart-container">
+      <h1 class="chart-title">Revenue by Month</h1>
+      <div class="loading" id="loading-month-chart">Loading...</div>
+      <canvas id="revenue-by-month-chart" style="display: none"></canvas>
+    </div>
+
+
+    
+      <div class="chart-container">				 
+        <h1 class="chart-title" style="text-align:center;">Revenue by Product Category</h1>
         <div class="loading" id="loading-category-chart">Loading...</div>
         <canvas id="revenue-by-category-chart" style="display: none"></canvas>
       </div>
+
       <div class="chart-container">
-        <h1 class="chart-title">Revenue by Month</h1>
-        <div class="loading" id="loading-month-chart">Loading...</div>
-        <canvas id="revenue-by-month-chart" style="display: none"></canvas>
+        <h1 class="chart-title">Revenue by Product Detail</h1>
+        <div class="loading" id="loading-product-detail-chart">Loading...</div>
+        <canvas id="revenue-by-product-detail-chart" style="display: none"></canvas>
       </div>
+      
       <div class="chart-container">
-        <h1 class="chart-title">Revenue by Store Location</h1>
-        <div class="loading" id="loading-location-chart">Loading...</div>
-        <canvas id="revenue-by-location-chart" width="100" height="100" style="display: none;"></canvas>
+      <h1 class="chart-title" style="text-align:center;">Revenue by Store Location</h1>
+      <div class="loading" id="loading-location-chart">Loading...</div>
+      <canvas id="revenue-by-location-chart" width="200" height="200" style="display: none;"></canvas>
 
       </div>
 
-      <div class="table-container">
-          <h1 class="table-title">Transaction Table</h1>
-          <div class="loading" id="loading-transaction-table">Loading...</div>
-          <table id="transaction-table-dt" class="display">
-            <thead>
-              <tr>
-                <th>Product Category</th>
-                <th>Product Detail</th>
-                <th>Price</th>
-                <th>Total Sales</th>
-                <th>Transaction Date</th>
-              </tr>
-            </thead>
-            <tbody></tbody>
-          </table>
-        </div>
+      <div class="chart-container transaction-table-container">
+        <h1 class="chart-title">Transaction Table</h1>
+        <div class="loading" id="loading-transaction-table">Loading...</div>
+        <table id="transaction-table-dt" class="display">
+          <thead>
+            <tr>
+              <th>Product Category</th>
+              <th>Product Detail</th>
+              <th>Price</th>
+              <th>Total Sales</th>
+              <th>Transaction Date</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+      
+	</div>
     </main>
   </div>
   <footer>

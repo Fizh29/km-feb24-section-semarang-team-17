@@ -25,11 +25,7 @@ h2 {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: linear-gradient(
-    90deg,
-    #00fff7,
-    #e22bc3
-  ); /* Blue to purple gradient */
+  background: linear-gradient(90deg, #00fff7, #e22bc3); /* Blue to purple gradient */
   padding: 10px 20px;
   position: fixed;
   top: 0;
@@ -86,8 +82,9 @@ header {
 /* Container styling */
 .container {
   padding: 20px;
-  max-width: 1200px;
+  max-width: 1400px;
   margin: 0 auto;
+  text-align: center; /* Center-align content */
 }
 
 /* Main content styles */
@@ -169,7 +166,6 @@ select {
   transform: translateY(-10px); /* Move up on hover */
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); /* Shadow on hover */
 }
-
 .team-member img {
   border-radius: 50%;
   width: 150px;
@@ -190,8 +186,133 @@ footer {
   text-align: center;
   padding: 20px 0;
   margin-top: 20px;
+  display: block;
+  width: 100%;
 }
+
 #revenue-by-location-chart {
   width: 300px; /* Ubah lebar sesuai kebutuhan */
   height: 300px; /* Ubah tinggi sesuai kebutuhan */
+}
+
+.CTable {
+  display: -webkit-box;
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 10px 3em 0;
+  padding: 0;
+  position: relative;
+  justify-content: center; /* Center-align content */
+}
+
+.chart-container {
+  position: relative;
+  padding: 50px;
+}
+
+/* Style for transaction table */
+.chart-container table {
+  width: 100%; /* Ensure table takes full width */
+  margin: 0 auto; /* Center the table horizontally */
+}
+
+.chart-container th,
+.chart-container td {
+  padding: 10px;
+  text-align: center; /* Center-align table text */
+  border: 1px solid #ddd; /* Border for table cells */
+}
+
+.chart-container th {
+  background-color: #f4f4f4; /* Light grey background for header */
+}
+
+/* Media Queries */
+@media (min-width: 768px) {
+  .CTable {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Dua kolom */
+    grid-template-rows: repeat(2, auto); /* Dua baris */
+    gap: 20px; /* Spasi antar elemen */
+    justify-content: center; /* Center-align content */
+  }
+
+  .chart-container:nth-child(1) {
+    grid-row: 1; /* Berada di baris pertama */
+    grid-column: 1; /* Berada di kolom pertama */
+  }
+
+  .chart-container:nth-child(2) {
+    grid-row: 1; /* Berada di baris pertama */
+    grid-column: 2; /* Berada di kolom kedua */
+  }
+
+  .chart-container:nth-child(3) {
+    grid-row: 2; /* Berada di baris kedua */
+    grid-column: 1; /* Berada di kolom pertama */
+  }
+
+  .chart-container:nth-child(4) {
+    grid-row: 2; /* Berada di baris kedua */
+    grid-column: 2; /* Berada di kolom kedua */
+  }
+}
+
+@media (max-width: 767px) {
+  .navbar-logo {
+    margin: 0 auto; /* Mengatur margin secara otomatis ke kiri dan kanan agar logo berada di tengah */
+    text-align: center; /* Pusatkan logo secara horizontal */
+  }
+  
+  .navbar-links {
+    flex-direction: column; /* Menyusun tombol secara vertikal */
+    width: 100%; /* Memenuhi lebar layar */
+    align-items: center; /* Menyusun item ke tengah */
+  }
+
+  .navbar-links button,
+  .navbar-links img {
+    margin: 5px 0; /* Memberikan margin vertikal */
+  }
+
+  .header-text h1,
+  .header-text h2 {
+    display: block;
+    margin: 5px auto; /* Margin auto untuk menengah */
+    max-width: fit-content; /* Mengubah ukuran agar sesuai konten */
+  }
+
+  .filter-container {
+    flex-direction: column; /* Menyusun filter secara vertikal */
+    align-items: center; /* Menyusun item ke tengah */
+  }
+
+  .team-grid {
+    grid-template-columns: 1fr; /* Satu kolom pada tampilan seluler */
+  }
+
+  .chart-container {
+    width: 100%; /* Memastikan setiap elemen memenuhi lebar layar */
+    padding: 20px; /* Menyesuaikan padding untuk tampilan mobile */
+    overflow-x: auto; /* Add horizontal scroll if needed */
+  }
+
+  .chart-container table {
+    width: 100%; /* Ensure table takes full width */
+  }
+
+  .chart-container th,
+  .chart-container td {
+    padding: 8px; /* Adjust padding for smaller screens */
+    font-size: 12px; /* Adjust font size for smaller screens */
+  }
+
+  footer {
+    width: 100%; /* Memenuhi lebar layar */
+    padding: 10px 0; /* Menyesuaikan padding untuk tampilan mobile */
+  }
+
+  header {
+    padding-top: 120px; /* Tambahkan lebih banyak ruang di bagian atas untuk memastikan elemen header tidak tertutup oleh navbar */
+  }
 }
